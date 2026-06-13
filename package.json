@@ -1,0 +1,31 @@
+{
+  "name": "secure-video-call-app",
+  "version": "1.0.0",
+  "description": "Secure browser-based 1-to-1 video calling app with Node.js, Express, Socket.IO, and WebRTC.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "NODE_ENV=development node src/server.js"
+  },
+  "keywords": [
+    "webrtc",
+    "socket.io",
+    "express",
+    "video-call",
+    "jwt"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "selfsigned": "^2.4.1",
+    "socket.io": "^4.8.1"
+  }
+}

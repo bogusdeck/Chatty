@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Secure private 1-to-1 video calls over WebRTC. No recordings, no server storage." />
+    <title>chatty — secure terminal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+
+      <!-- ── Auth Panel ───────────────────────────────── -->
+      <section class="panel auth-panel" id="auth-panel">
+        <div class="panel-inner">
+
+          <div>
+            <p class="eyebrow">// secure webrtc session</p>
+            <h1>chatty<span class="accent">_</span></h1>
+            <p class="lede" style="margin-top:0.5rem;">
+              Peer-to-peer encrypted video. No recordings, no chat logs,<br/>
+              nothing persisted on the server.
+            </p>
+          </div>
+
+          <div class="prompt-line">
+            authenticate to start a session<span class="prompt-blink"></span>
+          </div>
+
+          <form id="login-form" class="stack">
+            <label>
+              <span>username</span>
+              <input id="username" name="username" type="text"
+                     autocomplete="username" placeholder="e.g. cameron" required />
+            </label>
+            <label>
+              <span>password</span>
+              <input id="password" name="password" type="password"
+                     autocomplete="current-password" placeholder="••••••••" required />
+            </label>
+            <button type="submit" id="sign-in-btn" class="primary">
+              &gt;_ Sign In
+            </button>
+          </form>
+
+          <p class="hint">
+            # demo credentials are configured via AUTH_USERS in your .env
+          </p>
+
+          <p id="auth-error" class="error-text" aria-live="polite"></p>
+
+        </div>
+      </section>
+
+      <!-- ── Call Panel ───────────────────────────────── -->
+      <section class="panel call-panel hidden" id="call-panel">
+        <div class="panel-inner">
+
+          <header class="toolbar">
+            <div>
+              <p class="eyebrow">// authenticated session</p>
+              <h2 id="welcome-text">ready to join</h2>
+            </div>
+            <div class="status-badge" id="connection-status">DISCONNECTED</div>
+          </header>
+
+          <form id="join-form" class="join-grid">
+            <label>
+              <span>room id</span>
+              <input id="room-id" name="roomId" type="text"
+                     maxlength="64" placeholder="e.g. team-standup-room" required />
+            </label>
+            <button type="submit" id="join-btn" class="primary">
+              &gt;_ Join
+            </button>
+          </form>
+
+          <div class="controls">
+            <button id="leave-btn" type="button" disabled>
+              [←] Leave Call
+            </button>
+            <button id="mute-btn" type="button" disabled>
+              [♦] Mute Mic
+            </button>
+            <button id="camera-btn" type="button" disabled>
+              [◉] Camera Off
+            </button>
+            <button id="end-session-btn" type="button" class="danger" disabled>
+              [✕] End Session
+            </button>
+          </div>
+
+          <p class="info-line" id="room-summary">$ not connected to a room.</p>
+          <p class="error-text" id="call-error" aria-live="polite"></p>
+
+          <section class="video-grid">
+            <article class="video-card">
+              <div class="video-label">local</div>
+              <video id="local-video" autoplay playsinline muted></video>
+            </article>
+            <article class="video-card">
+              <div class="video-label">peer</div>
+              <video id="remote-video" autoplay playsinline></video>
+            </article>
+          </section>
+
+        </div>
+      </section>
+
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
