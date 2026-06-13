@@ -9,6 +9,8 @@ COPY public ./public
 COPY src ./src
 
 ENV NODE_ENV=production
-EXPOSE 3443
+ENV TRUST_PROXY=true
+ENV PORT=10000
+EXPOSE 10000
 
 CMD ["npm", "start"]
