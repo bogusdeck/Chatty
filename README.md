@@ -2,6 +2,21 @@
 
 Browser-based private video calling application built with Node.js, Express, Socket.IO, and WebRTC. The server only performs authentication, room coordination, and signaling. Audio, video, and in-session state remain in memory and are not stored server-side.
 
+## Demo
+
+Try the live application:
+
+🔗 https://chatty-ofte.onrender.com
+
+### Demo Accounts
+
+| Username | Password |
+|----------|----------|
+| alice | password123 |
+| bob | password123 |
+
+> Use either account to log in and test the application.
+
 ## 1. Complete Project Structure
 
 ```text
